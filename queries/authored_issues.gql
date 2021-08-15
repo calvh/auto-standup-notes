@@ -1,0 +1,17 @@
+{
+  search(
+    query: "repo:${repo} is:issue author:${username}"
+    type: ISSUE
+    last: ${last}
+  ) {
+    edges {
+      node {
+        ... on Issue {
+          title
+          number
+          url
+        }
+      }
+    }
+  }
+}

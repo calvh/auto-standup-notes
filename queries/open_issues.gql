@@ -1,0 +1,17 @@
+{
+  search(
+    query: "repo:${repo} is:issue is:open assignee:${username}"
+    type: ISSUE
+    last: ${last}
+  ) {
+    edges {
+      node {
+        ... on Issue {
+          title
+          number
+          url
+        }
+      }
+    }
+  }
+}

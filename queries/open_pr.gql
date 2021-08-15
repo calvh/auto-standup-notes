@@ -1,0 +1,17 @@
+{
+  search(
+    query: "repo:${repo} is:pr is:open author:${username}"
+    type: ISSUE
+    last: ${last}
+  ) {
+    edges {
+      node {
+        ... on PullRequest {
+          title
+          number
+          url
+        }
+      }
+    }
+  }
+}
