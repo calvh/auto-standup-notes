@@ -1,6 +1,6 @@
 {
   search(
-    query: "repo:${repo} is:issue author:${username} opened:${date_range}"
+    query: "repo:${repo} is:issue author:${username} created:${date_range}"
     type: ISSUE
     last: ${last}
   ) {
