@@ -4,33 +4,46 @@
 # transform data into suitable format with jq
 # output standup notes in markdown format to stdout
 
-TOKEN=
-USERNAME=
-REPO=
-DATE_START=
-DATE_END=
-COUNT=10
+read -p "Load variables from .env file? (y/n)" load_env
 
-while [[ -z "${TOKEN}" ]]; do
-    read -sp 'GitHub Personal Access Token ' TOKEN
-done
+while true; do
+    case "${load_env}" in
+    [Yy])
+        source ./.env
+        break
+        ;;
+    [Nn])
+        unset TOKEN
+        unset USERNAME
+        unset REPO
+        unset DATE_START
+        unset DATE_END
+        COUNT=10
 
-echo
+        while [[ -z "${TOKEN}" ]]; do
+            read -sp 'GitHub Personal Access Token ' TOKEN
+            echo
+        done
 
-while [[ -z "${USERNAME}" ]]; do
-    read -p 'GitHub username ' USERNAME
-done
+        while [[ -z "${USERNAME}" ]]; do
+            read -p 'GitHub username ' USERNAME
+        done
 
-while [[ -z "${REPO}" ]]; do
-    read -p 'Repository name including owner [e.g., octocat/Hello-World] ' REPO
-done
+        while [[ -z "${REPO}" ]]; do
+            read -p 'Repository name including owner [e.g., octocat/Hello-World] ' REPO
+        done
 
-while [[ -z "${DATE_START}" ]]; do
-    read -p 'Start Date in YYYY-MM-DD format (inclusive) ' DATE_START
-done
+        while [[ -z "${DATE_START}" ]]; do
+            read -p 'Start Date in YYYY-MM-DD format (inclusive) ' DATE_START
+        done
 
-while [[ -z "${DATE_END}" ]]; do
-    read -p 'End Date in YYYY-MM-DD format (inclusive) ' DATE_END
+        while [[ -z "${DATE_END}" ]]; do
+            read -p 'End Date in YYYY-MM-DD format (inclusive) ' DATE_END
+        done
+        break
+        ;;
+    *) echo "Enter (y/n)" ;;
+    esac
 done
 
 function query() {
