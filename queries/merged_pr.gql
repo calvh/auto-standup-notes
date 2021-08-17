@@ -1,6 +1,6 @@
 {
   search(
-    query: "repo:${repo} is:pr is:merged merged:${date_range} author:${username}"
+    query: "repo:${repo} is:pr is:merged merged:${date_range} involves:${username}"
     type: ISSUE
     last: ${last}
   ) {

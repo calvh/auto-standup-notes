@@ -1,6 +1,6 @@
 {
   search(
-    query: "repo:${repo} is:pr is:open author:${username}"
+    query: "repo:${repo} is:pr is:open involves:${username}"
     type: ISSUE
     last: ${last}
   ) {
